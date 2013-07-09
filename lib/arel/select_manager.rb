@@ -157,6 +157,11 @@ module Arel
       end
     end
 
+    def distinct_on(column)
+      @ctx.set_quantifier = Arel::Nodes::DistinctOn.new(column)
+    end
+
+
     def order *expr
       # FIXME: We SHOULD NOT be converting these to SqlLiteral automatically
       @ast.orders.concat expr.map { |x|
